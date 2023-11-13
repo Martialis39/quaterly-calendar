@@ -35,8 +35,8 @@ function App(props: AppProps) {
   const [formData, setFormData] = useState<IFormData>({
     start: new Date('2023-01-01'),
     end: new Date('2023-01-07'),
-    title: "",
-    description: ""
+    title: "Example!",
+    description: "Hi!"
   })
 
 

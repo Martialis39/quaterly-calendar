@@ -23,7 +23,9 @@ const renderWeekHeader = (week: Week) => {
 const renderTasks = (tasks: Task[], relevantWeeks: Week[]) => {
     return tasks.map(task => {
             return (<tr>
-                Test
+                <td>
+                {task.title}
+                </td>
                 {relevantWeeks.map((week: Week) => {
                     const isStartDateWithinWeek = isDateInWeek(week, task.start)
                     if((week.startDate >= task.start || isStartDateWithinWeek) && week.startDate <= task.end){
