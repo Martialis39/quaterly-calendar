@@ -26,3 +26,17 @@ tfoot {
 th {
   padding: 4px;
 }
+
+h3 {
+  text-align: center;
+}
+
+main, header {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
