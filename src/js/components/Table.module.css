@@ -1,0 +1,14 @@
+.buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    padding: 6px;
+}
+
+.buttons button {
+    padding: 6px;
+}
+
+.active {
+    background-color: chartreuse;
+}
