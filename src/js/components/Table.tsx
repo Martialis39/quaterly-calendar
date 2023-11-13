@@ -1,5 +1,7 @@
+import { useState } from "react"
 import { Task, Week, isDateInWeek } from "../utility"
 import { QUARTER_STARTS } from "../utility"
+import styles from './Table.module.css'
 
 interface TableProps {
     weeks: Week[],
@@ -12,9 +14,8 @@ const renderWeekHeader = (week: Week) => {
     const day = date.getDate()
     const month = date.getMonth() + 1
     return <th key={String(day + month)}>
-        <div>
+        <div className={styles.tableCell}>
             <p>Week {week.nr}</p>
-            <p>{day}/{month}/{date.getFullYear()}</p>
         </div>
     </th>
 }
@@ -26,9 +27,9 @@ const renderTasks = (tasks: Task[], relevantWeeks: Week[]) => {
                 {relevantWeeks.map((week: Week) => {
                     const isStartDateWithinWeek = isDateInWeek(week, task.start)
                     if((week.startDate >= task.start || isStartDateWithinWeek) && week.startDate <= task.end){
-                        return <td>{'IN'}</td>
+                        return <td className={styles.active} />
                     } else {
-                        return <td>{'OUT'}</td>
+                        return <td />
                     }
                 })}
             </tr>)
@@ -36,25 +37,44 @@ const renderTasks = (tasks: Task[], relevantWeeks: Week[]) => {
 }
 
 export const Table = ({weeks, currentQuarter, tasks}: TableProps) => {
-    let endDate = new Date(QUARTER_STARTS[currentQuarter + 1 > 3 ? 0 : currentQuarter + 1])
-    if(currentQuarter + 1 > 3){
+    const [quarter, setQuarter] = useState<number>(currentQuarter)
+    let endDate = new Date(QUARTER_STARTS[quarter + 1 > 3 ? 0 : quarter + 1])
+    if(quarter + 1 > 3){
         endDate.setFullYear(endDate.getFullYear() + 1)
     }
     const relevantWeeks = weeks.filter(function(week: Week){
-                return week.startDate <= endDate && week.startDate > QUARTER_STARTS[currentQuarter] 
+                return week.startDate <= endDate && week.startDate > QUARTER_STARTS[quarter] 
               })
               
     const tableHeaders = relevantWeeks.map(renderWeekHeader)
 
     return ( 
-        <table>
-          <thead>
-            <tr>
-              <th>Tasks</th>
-              {tableHeaders}
-            </tr>
-            {tasks && renderTasks(tasks, relevantWeeks)}
-          </thead>
-        </table>
+        <>
+            <div>
+                <h3>Quarter {quarter + 1}</h3>
+                <div className={styles.buttons}>
+                    <button disabled={quarter < 1} onClick={() => {
+                        setQuarter(old => {
+                            return Math.max(0, old - 1)
+                        })
+                    }}>Prev</button>
+                    <button disabled={quarter > 2} onClick={() => {
+                        setQuarter(old => {
+                            return Math.min(3, old + 1)
+                        })
+                    }}>Next</button>
+                </div>
+
+            </div>
+            <table>
+            <thead>
+                <tr>
+                <th>Tasks</th>
+                {tableHeaders}
+                </tr>
+                {tasks && renderTasks(tasks, relevantWeeks)}
+            </thead>
+            </table>
+        </>
  )
 }
