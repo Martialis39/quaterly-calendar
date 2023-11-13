@@ -1,13 +1,20 @@
 export const QUARTER_STARTS = [
-    new Date('1.1.2023'),
-    new Date('4.1.2023'),
-    new Date('7.1.2023'),
-    new Date('10.1.2023'),
+    new Date(Date.UTC(2023, 0, 1)),
+    new Date(Date.UTC(2023, 3, 1)),
+    new Date(Date.UTC(2023, 6, 1)),
+    new Date(Date.UTC(2023, 9, 1)),
 ]
 
 export interface Week {
     nr: number,
     startDate: Date
+}
+
+export const isDateInWeek = (week: Week, date: Date): boolean => {
+    const d = new Date(week.startDate)
+    const endDate = new Date(d.setDate(d.getDate() + 7))
+    const result =  week.startDate <= date && date < endDate
+    return result
 }
 
 export const getQuarter = (date: Date): number => {

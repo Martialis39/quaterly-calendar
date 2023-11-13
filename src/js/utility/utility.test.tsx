@@ -1,4 +1,20 @@
-import { getQuarter, getYearInWeeks } from "."
+import { getQuarter, getYearInWeeks, isDateInWeek } from "."
+
+describe('isDateInWeek', () => {
+    const week = {nr: 1, startDate: new Date(Date.UTC(2023, 0, 2))}
+    const testCases: [Date, boolean][] = [
+        [new Date(Date.UTC(2023, 0, 2)), true],
+        [new Date(Date.UTC(2023, 0, 4)), true],
+        [new Date(Date.UTC(2023, 0, 8)), true],
+        [new Date(Date.UTC(2023, 0, 9)), false],
+    ]
+    testCases.forEach(([date, output], i) => {
+
+        test('Test: ' + i, () => {
+            expect(isDateInWeek(week, date)).toBe(output)
+        })
+    })
+})
 
 describe('getQuarter', () => {
 
