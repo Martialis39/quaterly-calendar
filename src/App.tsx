@@ -20,8 +20,8 @@ interface IFormData {
 }
 
   const exampleTask: Task = {
-    start: new Date(Date.UTC(2023, 0, 23)),
-    end: new Date(Date.UTC(2023, 1, 12)),
+    start: new Date(Date.UTC(2023, 10, 23)),
+    end: new Date(Date.UTC(2023, 11, 12)),
     title: "test",
     description: "description"
   }
