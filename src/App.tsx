@@ -1,11 +1,20 @@
 import React from 'react';
-import styles from './App.module.css';
+import { getQuarter, getYearInWeeks } from './js/utility';
+import { Table } from './js/components/Table';
 
-function App() {
+interface AppProps {
+  startDate?: Date
+  currentQuarter: number
+}
+
+function App(props: AppProps) {
+  const start = props.startDate ? props.startDate : Date.UTC(2023, 0, 1)
+  const weeks = getYearInWeeks(new Date(start))
+  const currentQuarter = props.hasOwnProperty('currentQuarter') ? props.currentQuarter : getQuarter(new Date(Date.now()))
   return (
     <div>
       <header>
-        <h1>Yay</h1>
+        <Table weeks={weeks} currentQuarter={currentQuarter} />
       </header>
     </div>
   );
