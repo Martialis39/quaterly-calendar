@@ -66,6 +66,7 @@ export const Table = ({weeks, currentQuarter, tasks}: TableProps) => {
                 </div>
 
             </div>
+            <div className={styles.tableWrapper}>
             <table>
             <thead>
                 <tr>
@@ -75,6 +76,7 @@ export const Table = ({weeks, currentQuarter, tasks}: TableProps) => {
                 {tasks && renderTasks(tasks, relevantWeeks)}
             </thead>
             </table>
+            </div>
         </>
  )
 }

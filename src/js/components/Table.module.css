@@ -12,3 +12,7 @@
 .active {
     background-color: chartreuse;
 }
+
+.tableWrapper {
+    overflow-x: auto;
+}
