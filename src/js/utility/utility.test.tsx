@@ -19,13 +19,13 @@ describe('getQuarter', () => {
 
 describe('getWeeksInQuarter', () => {
     test('returns the first week', () => {
-        const startDate = new Date(Date.UTC(2023, 0, 1))
-        const result = getYearInWeeks(startDate)
+        const startOfYear = new Date(Date.UTC(2023, 0, 1))
+        const result = getYearInWeeks(startOfYear)
         expect(result[0]).toStrictEqual({nr: 1, startDate: new Date('2023-01-02T00:00:00.000Z')})
     })
     test('returns the last week', () => {
-        const startDate = new Date(Date.UTC(2023, 0, 1))
-        const result = getYearInWeeks(startDate)
+        const startOfYear = new Date(Date.UTC(2023, 0, 1))
+        const result = getYearInWeeks(startOfYear)
         expect(result[51]).toStrictEqual({nr: 52, startDate: new Date('2023-12-25T00:00:00.000Z')})
     })
 })

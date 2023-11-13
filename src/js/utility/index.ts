@@ -20,10 +20,10 @@ export const getQuarter = (date: Date): number => {
     return result
 }
 
-export const getYearInWeeks = (startDate: Date): Week[] => {
+export const getYearInWeeks = (startOfYear: Date): Week[] => {
     let weeks = []
 
-    const date = new Date(startDate)
+    const date = new Date(startOfYear)
     const day = date.getUTCDay()
     if(day > 4 || day === 0){ // past thursday, count from next week
         while(date.getUTCDay() !== 1){
@@ -31,8 +31,8 @@ export const getYearInWeeks = (startDate: Date): Week[] => {
         }
     }
 
-    const nextYear = new Date(startDate)
-    nextYear.setFullYear(startDate.getFullYear() + 1)
+    const nextYear = new Date(startOfYear)
+    nextYear.setFullYear(startOfYear.getFullYear() + 1)
     for (let i = 0; i < 52; i++) {
         if(date <= nextYear){
             const d = {
