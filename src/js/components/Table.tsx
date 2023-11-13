@@ -50,7 +50,7 @@ export const Table = ({weeks, currentQuarter, tasks}: TableProps) => {
 
     return ( 
         <>
-            <div>
+            <div className={styles.title}>
                 <h3>Quarter {quarter + 1}</h3>
                 <div className={styles.buttons}>
                     <button disabled={quarter < 1} onClick={() => {

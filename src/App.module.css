@@ -1,0 +1,24 @@
+.app {
+    padding: 12px;
+    background-color: #EAD4CC;
+    max-width: 880px;
+    margin: 24px auto;
+    border-radius: 6px;
+    
+}
+
+.mainForm {
+    padding: 6px;
+}
+
+.mainForm div {
+    margin-bottom: 6px;
+}
+
+
+.mainForm div label > div {
+    margin-left: 6px;
+}
+.mainForm div label + input {
+    margin-left: 6px;
+}

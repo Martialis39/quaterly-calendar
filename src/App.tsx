@@ -5,6 +5,7 @@ import { Task } from './js/utility';
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
+import styles from './App.module.css';
 
 interface AppProps {
   startOfYear?: Date
@@ -40,12 +41,12 @@ function App(props: AppProps) {
 
 
   return (
-    <div>
+    <div className={styles.app}>
       <header>
         <Table weeks={weeks} currentQuarter={currentQuarter} tasks={tasks} />
       </header>
       <main>
-        <form onSubmit={e => {
+        <form className={styles.mainForm} onSubmit={e => {
           e.preventDefault()
           setTasks(old => {
             if(old.length > 9){
@@ -55,7 +56,6 @@ function App(props: AppProps) {
           })
         }}>
           <div>
-
             <label>Pick a start date
               <DatePicker selected={formData.start} onChange={e => {
                 setFormData((old): IFormData => {
@@ -101,6 +101,8 @@ function App(props: AppProps) {
                 return old
               })
             }} />
+          </div>
+          <div>
             <input type="submit" value="Add task!" />
           </div>
         </form>
